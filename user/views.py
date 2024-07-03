@@ -32,19 +32,24 @@ def login_user(request):
     if request.method == 'POST':
         form = AuthenticationForm(request, data=request.POST)
         if form.is_valid():
-            # username = form.cleaned_data.get('username')
-            # password = form.cleaned_data.get('password')
-            username=request.POST['username']
-            password=request.POST['password']
+       
+            username = form.cleaned_data.get('username')
+            password = form.cleaned_data.get('password')
             user = authenticate(username=username, password=password)
+
             if user is not None:
+             
                 login(request, user)
-                return redirect('/admin/')
+          
+                return redirect('/home/')  
+            else:
+                messages.error(request, 'Invalid username or password.')
+        else:
+            messages.error(request, 'Invalid form submission.')
     else:
         form = AuthenticationForm()
 
     context = {
         'form': form
     }
-    return render(request, 'user/login.html', context) 
-
+    return render(request, 'user/login.html', context)
