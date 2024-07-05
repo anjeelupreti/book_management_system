@@ -44,8 +44,7 @@ class Book(models.Model):
     discount_percent = models.DecimalField(max_digits=9, decimal_places=2)
     volume = models.IntegerField()
     language = models.CharField(max_length=10, null=True, blank=True)
-    is_published = models.BooleanField()
-    reference = models.TextField()
+    is_active = models.BooleanField()
     created_at = models.DateTimeField(auto_now_add=True)
     modified_at = models.DateTimeField(auto_now=True)
 

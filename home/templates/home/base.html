@@ -46,7 +46,7 @@
 			
 				<!-- Logo -->
                 <div class="header-left">
-                    <a href="index.html" class="logo">
+                    <a href="{% url 'homepage' %}" class="logo">
 						<img src="assets/img/logo.png" width="40" height="40" alt="">
 					</a>
                 </div>
@@ -94,34 +94,32 @@
 			
 			<!-- Sidebar -->
             <div class="sidebar" id="sidebar">
-                <div class="sidebar-inner slimscroll">
+				<div class="sidebar-inner slimscroll">
 					<div id="sidebar-menu" class="sidebar-menu">
 						<ul>
-							<li class="menu-title"> 
+							<li class="menu-title">
 								<span>Main</span>
 							</li>
 							<li class="submenu">
 								<a href="#"><i class="la la-dashboard"></i> <span> Book</span> <span class="menu-arrow"></span></a>
 								<ul style="display: none;">
-									<li><a class="" href="{% url 'list_publication' %}">Publication</a></li>
-									<li><a class="" href="{% url 'list_genre' %}">Genre</a></li>
-									<!-- <li><a href="/visitor/list/">Visitor Entry</a></li> -->
+									<li><a class="" href="{% url 'list_book' %}">Books</a></li>
+									<li><a class="" href="{% url 'list_publication' %}">Publications</a></li>
+									<li><a class="" href="{% url 'list_genre' %}">Genres</a></li>
 								</ul>
-								
 							</li>
 							<li class="submenu">
-								<!-- <a href="#"><i class="la la-users "></i> <span> Upload</span> <span class="menu-arrow"></span></a>
+								<a href="#"><i class="la la-dashboard"></i> <span> Author</span> <span class="menu-arrow"></span></a>
 								<ul style="display: none;">
-									<li><a class="" href="/upload">Upload Excel</a></li>
+									<li><a class="" href="{% url 'list_author' %}">Authors</a></li>
 								</ul>
-								<ul style="display: none;">
-								<a> Hello</a>
-								</ul> -->
 							</li>
-							
+							<li class="submenu">
+								<!-- Other submenu items can go here -->
+							</li>
 						</ul>
 					</div>
-                </div>
+				</div>
 			</div>
 			<!-- /Sidebar -->
 			

@@ -1,0 +1,43 @@
+{% extends "home/base.html" %}
+{% block content %}
+<div class="row">
+    <h4> book </h4>
+     <div class="col-auto float-right ml-auto">
+        <a href="{% url 'create_book' %}" class="btn add-btn"><i class="fa fa-plus"></i> Add Book</a>
+    </div> 
+    <div class="col-md-12">
+        <div class="table-responsive">
+            <table class="table table-striped table-nowrap custom-table mb-0 booktable">
+                <thead>
+                    <tr><th>SN</th>
+                        <th>Name</th>
+                        <th>Author</th>
+                        <th>Publication</th>
+                        <th>Price</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for book in books %}
+                    <tr>
+                        <td>{{forloop.counter}}</td>
+                        <td>{{book.name}}</td>
+                        <td>{{book.author}}</td>
+                        <td>{{book.publication}}</td>
+                        <td>{{book.price}}</td>
+                        <td class="text-right">
+                            <a class="btn" href="{% url 'update_book' book.id %}"><i class="fa fa-pencil"></i> Edit</a> |
+                            <a class="btn" href="{% url 'delete_book' book.id %}"><i class="fa fa-trash"></i> Delete</a>
+                            
+
+                        </td>
+
+                    </tr>
+                   {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+{% endblock content %}

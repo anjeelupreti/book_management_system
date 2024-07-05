@@ -1,0 +1,87 @@
+{% extends "home/base.html" %}
+{% block content %}
+<div class="row">
+    <div class="col-md-6">
+        <div class="card">
+            <div class="card-header">
+                <h4 class="card-title mb-0">Add Book</h4>
+            </div>
+            <div class="card-body">
+                <form method="POST" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        <label for="id_name">Name</label>
+                        {{ form.name }}
+                    </div>
+                    <div class="form-group">
+                        <label for="id_file">File</label>
+                        {{ form.file }}
+                    </div>
+                    <div class="form-group">
+                        <label for="id_publication">Publication</label>
+                        {{ form.publication }}
+                    </div>
+                    <div class="form-group">
+                        <label for="id_genre">Genre:</label>
+                        {{ form.genre }}
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="id_author">Author:</label>
+                        {{ form.author }}
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="id_edition">Edition</label>
+                        {{ form.edition }}
+                    </div>
+                    <div class="form-group">
+                        <label for="id_rating">Rating</label>
+                        {{ form.rating }}
+                    </div>
+                    <div class="form-group">
+                        <label for="id_ISBN_number">ISBN Number</label>
+                        {{ form.ISBN_number }}
+                    </div>
+                    <div class="form-group">
+                        <label for="id_page_number">Page Number</label>
+                        {{ form.page_number }}
+                    </div>
+                    <div class="form-group">
+                        <label for="id_description">Description</label>
+                        {{ form.description }}
+                    </div>
+                    <div class="form-group">
+                        <label for="id_demo_text">Demo Text</label>
+                        {{ form.demo_text }}
+                    </div>
+                    <div class="form-group">
+                        <label for="id_price">Price</label>
+                        {{ form.price }}
+                    </div>
+                    <div class="form-group">
+                        <label for="id_discount_percent">Discount Percent</label>
+                        {{ form.discount_percent }}
+                    </div>
+                    <div class="form-group">
+                        <label for="id_volume">Volume</label>
+                        {{ form.volume }}
+                    </div>
+                    <div class="form-group">
+                        <label for="id_language">Language</label>
+                        {{ form.language }}
+                    </div>
+                    <div class="form-group">
+                        <label for="id_is_published">Is active</label>
+                        {{ form.is_active }}
+                    </div>
+                    
+                    <div class="text-right">
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}

@@ -7,7 +7,7 @@ class Author(models.Model):
     nickname = models.CharField(max_length=40, null=True, blank=True)
     address = models.CharField(max_length=200, null=True, blank=True)
     nationality = models.CharField(max_length=20, null=True, blank=True)
-    phone = models.PositiveIntegerField()
+    phone = models.PositiveBigIntegerField()
     email = models.EmailField()
     department = models.CharField(max_length=100, null=True, blank=True)
     education = models.CharField(max_length=40, null=True, blank=True)
@@ -16,5 +16,5 @@ class Author(models.Model):
     modified_at = models.DateTimeField(auto_now=True)
     modified_by = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
 
-    def __str__(self) -> str:
+    def __str__(self):
         return self.name

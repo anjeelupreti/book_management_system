@@ -2,10 +2,10 @@ from .models import Book,Genre,Publication
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib import messages 
 from django.http import HttpResponse
-# from .form import EditBookForm,
-from .form import GenreForm
+from .forms import BookForm
+from .forms import GenreForm
 from book.models import Publication
-from book.form import PublicationForm
+from book.forms import PublicationForm
 from django.contrib.auth.decorators import login_required
 
 
@@ -26,10 +26,10 @@ def create_publication(request):
         form = PublicationForm(request.POST)
         if form.is_valid():
             form.save()
-            messages.success(request, 'Publication added successfully.')  # Add success message
-            return redirect('list_publication')  # Redirect to the list view
+            messages.success(request, 'Publication added successfully.')  
+            return redirect('list_publication') 
         else:
-            messages.error(request, 'Error adding publication. Please check the form.')  # Add error message
+            messages.error(request, 'Error adding publication. Please check the form.')  
     else:
         form = PublicationForm()
 
@@ -49,13 +49,15 @@ def update_publication(request,id):
             print(form.errors)
         
     context = {'form':form}
-    return render(request,'publication/edit.html',context)
+    return render(request,'publication/update.html',context)
 
 @login_required
 def delete_publication(request,id):
     Publication.objects.get(id=id).delete()
     return redirect('/book/publication/list')
 
+
+#GENRE
 @login_required
 def list_genre(request):
     genres=Genre.objects.all()
@@ -96,7 +98,7 @@ def update_genre(request,id):
         "data":genre,
         "form":form
     }
-    return render(request,'genre/edit.html',context)
+    return render(request,'genre/update.html',context)
 
 @login_required
 def delete_genre(request, id):
@@ -110,33 +112,48 @@ def delete_genre(request, id):
 
 
 
-# Create your views here.
-
-# def delete_book(request,id):
+#BOOK
+def create_book(request):
+    if request.method == 'POST':
+        form = BookForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            return redirect('list_book')
     
-#     book =Book.objects.get(id=id)
-#     book.delete()
-#     return redirect('list_books')
+    form = BookForm()
+    context = {
+        'form': form,
+    }
+    return render(request, 'book/create.html', context)
+
+    
+def update_book(request,id):
+    book=Book.objects.get(id=id)
+    form = BookForm(request.POST, request.FILES, instance=book)
+    if request.method=='POST':
+        if form.is_valid():
+            form.save()
+            return redirect('list_book')
+    context={
+        'form':form
+    }
+    return render(request, 'book/update.html',context)
+
+def delete_book(request,id):
+    
+    book =Book.objects.get(id=id)
+    book.delete()
+    return redirect('list_book')
        
     
     
-# def list_books(request):
-#     context={
-#         'books':Book.objects.all().order_by('-name')
-        
-#     }
-#     # return render(request,'file',context)
-    
-# def edit_book(request,id):
-#     book=Book.objects.get(id=id)
-#     if request.method=='POST':
-#         form = BookForm(request.POST, request.FILES, instance=book)
-#         if form.is_valid():
-#             form.save()
-#             return redirect('list/')
-#     else:
-#         form = BookForm(instance=book) 
-#         return render(request, 'file', {'form': form})
+def list_book(request):
+    context={
+        'books':Book.objects.filter(is_active=True).order_by('-name')
+    }
+    return render(request,'book/index.html',context)
+
+
     
     
 
