@@ -41,7 +41,7 @@ def login_user(request):
              
                 login(request, user)
           
-                return redirect('/home/')  
+                return redirect('/')  
             else:
                 messages.error(request, 'Invalid username or password.')
         else:

@@ -1,0 +1,80 @@
+{% extends "home/base.html" %}
+
+{% block content %}
+    <!-- Page Content -->
+    <div class="page-header">
+        <div class="row">
+            <div class="col-sm-12">
+                <h3 class="page-title">{{ book.name }}</h3>
+                <ul class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="{% url 'homepage' %}">Dashboard</a></li>
+                    <li class="breadcrumb-item active">{{ book.name }}</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!-- /Page Header -->
+
+    <div class="card mb-0">
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="profile-view">
+                        <a href="#">
+                            {% load static %}
+                            <img src="{{ book.image.url }}" alt="Book Image" style="width: 200px; height: auto;">
+                        </a>
+                    </div>
+                </div>
+                <div class="col-md-9">
+                    <div class="profile-basic">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="profile-info-left">
+                                    <h3 class="user-name m-t-0">
+                                        {% for author in book.author.all %}
+                                            {{ author.name }}
+                                            {% if not forloop.last %}, {% endif %}
+                                        {% endfor %}
+                                    </h3>
+                                    <h5 class="company-role m-t-0 mb-0">
+                                        {% for genre in book.genre.all %}
+                                            {{ genre.name }}
+                                            {% if not forloop.last %}, {% endif %}
+                                        {% endfor %}
+                                    </h5>
+                                    <div class="staff-id">ISBN: {{ book.isbn }}</div>
+                                    <div class="staff-msg">
+                                        <a href="#" class="btn btn-primary" style="color: white;">Rs {{ book.price }}</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <ul class="personal-info">
+                                    <li>
+                                        <span class="title">Edition:</span>
+                                        <span class="text">{{ book.edition }}</span>
+                                    </li>
+                                    <li>
+                                        <span class="title">Volume:</span>
+                                        <span class="text">{{ book.volume }}</span>
+                                    </li>
+                                    <li>
+                                        <span class="title">Language:</span>
+                                        <span class="text">{{ book.language }}</span>
+                                    </li>
+                                    <br>
+                                    <hr>
+                                    
+                                        
+                                        <p>{{ book.description }}</p>
+                                    
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock content %}

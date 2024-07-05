@@ -12,21 +12,10 @@
                 <form method="POST">
                     {% csrf_token %}
                     <div class="form-group">
-                        <label>Name</label>
-                        {{ form.name }}
+                        
+                        {{ form.as_p }}
                     </div>
-                    <div class="form-group">
-                        <label>Email</label>
-                        {{ form.email }}
-                    </div>
-                    <div class="form-group">
-                        <label>Phone</label>
-                        {{ form.phone }}
-                    </div>
-                    <div class="form-group">
-                        <label>Is Active</label>
-                        {{ form.is_active }}
-                    </div>
+                    
                     <div class="text-right">
                         <button type="submit" class="btn btn-primary">Submit</button>
                     </div>

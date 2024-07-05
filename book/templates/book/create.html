@@ -9,9 +9,14 @@
             <div class="card-body">
                 <form method="POST" enctype="multipart/form-data">
                     {% csrf_token %}
+                    
                     <div class="form-group">
                         <label for="id_name">Name</label>
                         {{ form.name }}
+                    </div>
+                    <div class="form-group">
+                        <label for="id_image">Image</label>
+                        {{ form.image }}
                     </div>
                     <div class="form-group">
                         <label for="id_file">File</label>
@@ -25,12 +30,10 @@
                         <label for="id_genre">Genre:</label>
                         {{ form.genre }}
                     </div>
-                    
                     <div class="form-group">
                         <label for="id_author">Author:</label>
                         {{ form.author }}
                     </div>
-                    
                     <div class="form-group">
                         <label for="id_edition">Edition</label>
                         {{ form.edition }}
@@ -72,7 +75,7 @@
                         {{ form.language }}
                     </div>
                     <div class="form-group">
-                        <label for="id_is_published">Is active</label>
+                        <label for="id_is_active">Is Active</label>
                         {{ form.is_active }}
                     </div>
                     
@@ -84,4 +87,4 @@
         </div>
     </div>
 </div>
-{% endblock content %}
+{% endblock %}

@@ -18,15 +18,15 @@
                     </tr>
                 </thead>
                 <tbody>
-                    {% for data in publication %}
+                    {% for publication in publications %}
                     <tr>
                         <td>{{forloop.counter}}</td>
-                        <td>{{data.name}}</td>
-                        <td>{{data.address}}</td>
-                        <td>{{data.email}}</td>
+                        <td>{{publication.name}}</td>
+                        <td>{{publication.address}}</td>
+                        <td>{{publication.email}}</td>
                         <td class="text-right">
-                            <a class="btn" href="{% url 'update_publication' data.id %}"><i class="fa fa-pencil"></i> Edit</a> |
-                            <a class="btn" href="{% url 'delete_publication' data.id %}"><i class="fa fa-trash"></i> Delete</a>
+                            <a class="btn" href="{% url 'update_publication' publication.id %}"><i class="fa fa-pencil"></i> Edit</a> |
+                            <a class="btn" href="{% url 'delete_publication' publication.id %}"><i class="fa fa-trash"></i> Delete</a>
                             
 
                         </td>

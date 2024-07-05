@@ -30,7 +30,7 @@ class Genre(models.Model):
 class Book(models.Model):
     name = models.CharField(max_length=200, null=True, blank=True)
     file = models.FileField(upload_to='book/',blank=True, null=True)
-    image = models.ImageField(upload_to='book-image',null=True,blank=True)
+    image = models.ImageField(upload_to='book/images',null=True,blank=True)
     publication = models.ForeignKey(Publication, on_delete=models.RESTRICT)
     genre = models.ManyToManyField(Genre)
     author = models.ManyToManyField(Author)
