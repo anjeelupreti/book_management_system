@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect,get_object_or_404
 from author.models import Author
 from author.forms import AuthorForm
 from django.contrib import messages 
@@ -16,7 +16,7 @@ def list_author(request):
 
 def create_author(request):
     if request.method == 'POST':
-        form = AuthorForm(request.POST)
+        form = AuthorForm(request.POST,request.FILES)
         if form.is_valid():
             form.save()
             messages.success(request, 'Author added successfully.')
@@ -31,11 +31,18 @@ def create_author(request):
     context = {'form': form}
     return render(request, 'author/create.html', context)
 
+def read_author(request, id):
+    author = get_object_or_404(Author, id=id)
+    context = {
+        'author': author  
+    }
+    return render(request, 'author/read.html', context)
+
 def update_author(request, id):
     data = Author.objects.get(id=id)
     form = AuthorForm(instance=data)
     if request.method == "POST":
-        form = AuthorForm(request.POST, instance=data)
+        form = AuthorForm(request.POST,request.FILES, instance=data)
         if form.is_valid():
             form.save()
             return redirect("list_author")

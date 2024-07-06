@@ -5,6 +5,7 @@ from django.contrib.auth.models import User
 class Author(models.Model):
     name = models.CharField(max_length=200, null=True, blank=True)
     nickname = models.CharField(max_length=40, null=True, blank=True)
+    image = models.ImageField(upload_to='author/images',null=True,blank=True)
     address = models.CharField(max_length=200, null=True, blank=True)
     nationality = models.CharField(max_length=20, null=True, blank=True)
     phone = models.PositiveBigIntegerField()

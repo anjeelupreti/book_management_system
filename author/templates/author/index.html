@@ -1,37 +1,40 @@
 {% extends "home/base.html" %}
 {% block content %}
-<div class="row">
-     <div class="col-auto float-right ml-auto">
-        <a href="{% url 'create_author' %}" class="btn add-btn"><i class="fa fa-plus"></i> Add Author</a>
-    </div> 
-    <div class="col-md-12">
-        <div class="table-responsive">
-            <table class="table table-striped table-nowrap custom-table mb-0 authortable">
-                <thead>
-                    <tr>
-                        <th>SN</th>
-                        <th>Name</th>
-                        <th>Status</th>
-                        <th>Action</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {% for author in authors %}
-                    <tr>
-                        <td>{{forloop.counter}}</td>
-                        <td>{{author.name}}</td>
-                        <td>{{author.is_active}}</td>
-                        <td class="text-right">
-                            <a class="btn" href="{% url 'update_author' author.id %}"><i class="fa fa-pencil"></i> update</a>|
-                            <a class="btn" href="{% url 'delete_author' author.id %}"><i class="fa fa-trash"></i> Delete</a>
-                        </td>
 
-                    </tr>
-                   {% endfor %}
-                </tbody>
-            </table>
+    <!-- Page Header -->
+    <div class="page-header">
+        <div class="row align-items-center">
+            <div class="col">
+                <h3 class="page-title">Author</h3>
+                <ul class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="{% url 'homepage' %}">Dashboard</a></li>
+                    <li class="breadcrumb-item active">Author</li>
+                </ul>
+            </div>
+            <div class="col-auto float-right ml-auto">
+                <a href="{% url 'create_author' %}" class="btn add-btn"><i class="fa fa-plus"></i> Add Author</a>
+            </div>
         </div>
     </div>
-</div>
+    
+    <div class="row staff-grid-row">
+        {% for author in authors %}
+        <div class="col-md-4 col-sm-6 col-12 col-lg-4 col-xl-3">
+            <div class="profile-widget">
+                <div class="profile-img">
+                    {% if author.image %}
+                    <img src="{{ author.image.url }}" alt="{{ author.name }}" class="avatar">
+                    {% endif %}
+                </div>
+                <h4 class="user-name m-t-10 mb-0 text-ellipsis">{{ author.name }}</h4>
+                <h5 class="user-name m-t-10 mb-0 text-ellipsis">{{ author.department }}</h5>
+                <div class="small text-muted">{{ author.nickname }}</div>
+                <a href="{% url 'read_author' author.id %}" class="btn btn-white btn-sm m-t-10">View</a>
+                <a href="{% url 'update_author' author.id %}" class="btn btn-white btn-sm m-t-10">Edit</a>
+                <a href="{% url 'delete_author' author.id %}" class="btn btn-white btn-sm m-t-10">Delete</a>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
 
 {% endblock content %}

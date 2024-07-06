@@ -1,0 +1,86 @@
+{% extends "home/base.html" %}
+
+{% block content %}
+    <!-- Page Content -->
+    <div class="page-header">
+        <div class="row">
+            <div class="col-sm-12">
+                <h3 class="page-title">{{ author.name }}</h3>
+                <ul class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="{% url 'homepage' %}">Dashboard</a></li>
+                    <li class="breadcrumb-item active">{{ author.name }}</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!-- /Page Header -->
+
+    <div class="card mb-0">
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="profile-view">
+                        <a href="{% url 'read_author' author.id %}">
+                            
+                            {% if author.image %}
+                            {% load static %}
+                            <img src="{{ author.image.url }}" width="100px" height="100px">
+                            {% endif %}
+                        </a>
+                    </div>
+                </div>
+                <div class="col-md-9">
+                    <div class="profile-basic">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="profile-info-left">
+                                    <h3 class="user-name m-t-0">
+                                        {{author.nickname}}
+                                    </h3>
+                                    <h5 class="company-role m-t-0 mb-0">
+                                            {{ author.email }}
+                                    </h5>
+                                    <div class="staff-id">Nationality: {{ author.nationality }}</div>
+                                    <div class="staff-msg">
+                                        <a href="#" class="btn btn-primary" style="color: white;">Rs {{ author.department }}</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <ul class="personal-info">
+                                    <li>
+                                        <span class="title">Address:</span>
+                                        <span class="text">{{ author.address }}</span>
+                                    </li>
+                                    <li>
+                                        <span class="title">Nationality:</span>
+                                        <span class="text">{{ author.nationality }}</span>
+                                    </li>
+                                    <li>
+                                        <span class="title">Phone:</span>
+                                        <span class="text">{{ author.phone }}</span>
+                                    </li>
+                                    <li>
+                                        <span class="title">Department:</span>
+                                        <span class="text">{{ author.department }}</span>
+                                    </li>
+                                    <li>
+                                        <span class="title">Education:</span>
+                                        <span class="text">{{ author.education }}</span>
+                                    </li>
+                                    <br>
+                                    <hr>
+                                    
+                                        
+                                        <p>{{ author.modified_by }}</p>
+                                        <p>{{ author.created_by }}</p>
+                                    
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock content %}
